@@ -1,4 +1,12 @@
-import { Table, Column, Model, AllowNull, Unique } from "sequelize-typescript";
+import {
+  Table,
+  Column,
+  Model,
+  AllowNull,
+  Unique,
+  HasOne
+} from "sequelize-typescript";
+import { Order } from "./Order";
 
 @Table
 export class Token extends Model<Token> {
@@ -6,4 +14,7 @@ export class Token extends Model<Token> {
   @AllowNull(false)
   @Column
   value: string;
+
+  @HasOne(() => Order)
+  order: Order;
 }

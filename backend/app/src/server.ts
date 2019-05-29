@@ -7,6 +7,8 @@ import { Token } from "./entity/Token";
 import { Image } from "./entity/Image";
 import ImageLoader from "./control/ImageLoader";
 import cors = require("cors");
+import { ImageReference } from "./entity/ImageReference";
+import { Order } from "./entity/Order";
 
 // Database
 new Sequelize({
@@ -20,6 +22,8 @@ new Sequelize({
 });
 Token.sync().catch(error => console.log(error));
 Image.sync().catch(error => console.log(error));
+ImageReference.sync().catch(error => console.log(error));
+Order.sync().catch(error => console.log(error));
 
 // Images
 ImageLoader.loadImages();
@@ -36,6 +40,7 @@ app.use(cors());
 // Routes
 app.use("/tokens", routes.TokenResource);
 app.use("/images", routes.ImageResource);
+app.use("/orders", routes.OrderResource);
 
 app.listen(PORT);
 console.log(`Running on port ${PORT}`);
